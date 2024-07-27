@@ -1,0 +1,19 @@
+{
+     "name": "webcompiler",
+     "version": "1.0.0",
+     "description": "",
+     "main": "app.js",
+     "scripts": {"start":"set NODE_ENV=PRODUCTION & node app.js","dev":"npx nodemon app.js"}
+     ,
+     "keywords": [],
+     "author": "",
+     "type": "module",
+     "license": "ISC",
+     "dependencies": {
+        "express": "4.19.2","cors": "2.8.5"
+     }, 
+        "devDependencies": {
+          "nodemon": "3.1.4"
+        }
+      
+      }
