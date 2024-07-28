@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Java Online Compiler</title>
     <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            /* height: 100%; */
+            width: 100%;
+        }
+
         #input{
             height:100vh;
             width: 50vw;
@@ -12,18 +20,20 @@
         .flex{
             display: flex;
         }
+
     </style>
 </head>
-<body>
+<body style="width: 100vw;height: 100vh;">
     <p>Hello World <span style="color: red;">This is Java Compiler</span></p>
     <div class="container flex">
         <code style="background-color: black;color: white;" id="codetag">
             <textarea id="input" type="text">class compile {public static void main(String args[]){System.out.println("hello world");}}</textarea>
         </code>
         <div class="container">
-            <button id="run">Run Program</button>
-            <p>"java version 1111"</p>
-            <p id="output"></p>
+            <input type="button" id="run" value="Run Program">
+            <input type="text" name="inputvalue" id="enterinput" placeholder="Enter Input here">
+            <p style="height: 50px;">"java version 1111"</p>
+            <div id="output" style="display:flex;flex-direction: column;overflow: auto;"></div>
         </div>
     </div>
 <script>
@@ -31,10 +41,14 @@
     const run = document.getElementById("run");
     const runwindow = document.getElementById("output")
     const inputcode = document.getElementById("input")
+    const programinput = document.getElementById("enterinput")
 
 
     const runprogram = async()=>{
         const codeobject = btoa(inputcode.value)
+        runwindow.innerHTML=""
+        console.log(programinput.value)
+        programinput.value=""
 
 
         // sending request 
@@ -48,10 +62,22 @@
 
         // receving request
         // const outputs = await fetch('/compile/run').then(res=>res.text())
-        console.log(codeobject)
-        console.log(sendreq)
-        // console.log(outputs)
-        runwindow.innerHTML=sendreq;
+        // console.log(codeobject)
+        const data = sendreq.split(",")
+        data.shift()
+        data.pop()
+        data.pop()
+
+        console.log(data)
+        
+        Object.entries(data).map((ress)=>{
+            const ptag = document.createElement("p")
+            ptag.innerHTML=ress;
+            runwindow.appendChild(ptag)
+            // console.log("this is maped ",ress)
+        })
+        
+        // runwindow.innerHTML=sendreq;
 
  
 
