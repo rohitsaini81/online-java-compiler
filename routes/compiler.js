@@ -5,9 +5,7 @@ import { spawnSync } from 'child_process'
 
 
 
-router.get('/', (req, res) => {
-    res.status(400).redirect('/main')
-})
+
 router.post('/compile/code', async (req, res) => {
     const data = atob(req.body.codeobject);
 

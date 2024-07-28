@@ -23,11 +23,9 @@ app.use(express.urlencoded({extended: true}));
 app.use(cors({origin:' * ',credentials:true})); 
 
 
-  app.get('/', (req, res) => {
-    res.redirect("/main")
-  });
 
-  app.use('/main', express.static(path.join(__dirname, 'public')));
+
+  app.use('/', express.static(path.join(__dirname, 'public')));
   // your routes here
   app.use(router)
 
